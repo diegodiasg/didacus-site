@@ -1,0 +1,15 @@
+# Arquivos do Docker
+**/Dockerfile
+**/docker-compose.yml
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.sqlite3
+
+# Arquivos de ambiente
+.env
