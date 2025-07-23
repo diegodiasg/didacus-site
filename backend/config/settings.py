@@ -1,5 +1,7 @@
 import environ
 from pathlib import Path
+from django.core.management.utils import get_random_secret_key
+
 
 # ==== leitura do .env ==== 
 env = environ.Env(
@@ -11,7 +13,7 @@ environ.Env.read_env(env_file=Path(__file__).resolve().parent.parent / ".env")
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Configurações básicas
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = env("SECRET_KEY", default=get_random_secret_key())
 DEBUG = env("DEBUG")
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
