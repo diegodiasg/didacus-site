@@ -8,10 +8,9 @@ on:
     branches: [ main ]
 
 jobs:
-  backend:
+    backend:
     name: Backend Tests
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
 
@@ -20,10 +19,12 @@ jobs:
           cd backend
           python -m pip install --upgrade pip
           pip install poetry
-          poetry config virtualenvs.create false
+          # Remova qualquer config que desative o venv:
+          # poetry config virtualenvs.create false
           poetry install --no-interaction --no-ansi --no-root
 
       - name: Run backend tests
         run: |
           cd backend
           poetry run pytest --maxfail=1
+
