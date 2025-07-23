@@ -1,4 +1,3 @@
-# .github/workflows/ci.yml
 name: CI
 
 on:
@@ -8,23 +7,26 @@ on:
     branches: [ main ]
 
 jobs:
-    backend:
-      name: Backend Tests
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
+  backend:
+    name: Backend Tests
+    runs-on: ubuntu-latest
 
-        - name: Setup Python & dependencies
-          run: |
-            cd backend
-            python -m pip install --upgrade pip
-            pip install poetry
-            # Remova qualquer config que desative o venv:
-            # poetry config virtualenvs.create false
-            poetry install --no-interaction --no-ansi --no-root
+    # Adiciona variáveis de ambiente para CI
+    env:
+      SECRET_KEY: test-secret-key
+      DATABASE_URL: sqlite:///:memory:
 
-        - name: Run backend tests
-          run: |
-            cd backend
-            poetry run pytest --maxfail=1
+    steps:
+      - uses: actions/checkout@v3
 
+      - name: Setup Python & dependencies
+        run: |
+          cd backend
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry install --no-interaction --no-ansi --no-root
+
+      - name: Run backend tests
+        run: |
+          cd backend
+          poetry run pytest --maxfail=1
