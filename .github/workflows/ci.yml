@@ -1,8 +1,17 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
   backend:
     name: Backend Tests
     runs-on: ubuntu-latest
 
+    # Adiciona variáveis de ambiente para CI
     env:
       SECRET_KEY: test-secret-key
       DATABASE_URL: "sqlite:///:memory:"
