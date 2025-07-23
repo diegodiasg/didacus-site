@@ -29,7 +29,7 @@ jobs:
 
       - name: Run backend tests
         working-directory: backend
-        run: poetry run pytest --maxfail=1 --disable-warnings -q
+        run: poetry run pytest --maxfail=1 --disable-warnings
 
       - name: Lint with flake8
         working-directory: backend
