@@ -6,7 +6,11 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # Dependências do sistema
-RUN apt-get update && apt-get install -y build-essential \
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libjpeg-dev \
+    zlib1g-dev \
+    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Instala Poetry
