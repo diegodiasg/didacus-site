@@ -1,7 +1,17 @@
+# .github/workflows/ci.yml
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
   backend:
     name: Backend Tests
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
